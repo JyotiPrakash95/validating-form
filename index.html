@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation</title>
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding-top: 10%;
+      }
+      input {
+        font-size: 16px;
+        display: block;
+        width: 100%;
+        min-width: 300px;
+        margin: 10px 0;
+        border: 2px solid #ddd;
+        min-height: 30px;
+        border-radius: 10px;
+                font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+
+      }
+      label {
+        font-weight: 600;
+      }
+      .error-massage{color: red;
+      font-size: 16px;}
+    </style>
+  </head>
+  <body>
+    <form action="" id="signUp-form">
+      <div class="form-group">
+        <label for="first-name">First Name</label>
+        <input type="text" id="first-name" name="first-nmae" required />
+      </div>
+      <div class="form-group">
+        <label for="last-name">Last Name</label>
+        <input type="text" id="last-name" name="last-name" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+      <div class="from-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required />
+      </div>
+      <div class="from-group">
+        <label for="confirm-password">Confirm Password</label>
+        <input
+          type="password"
+          id="confirm-password"
+          name="confirm-password"
+          required
+        />
+      </div>
+      <button value="submit">Submit</button>
+    </form>
+
+    <script>
+      document.getElementById("signUp-form").addEventListener("submit", function (event) {
+          let firstName = document.getElementById("first-name").value;
+          let lastName = document.getElementById("last-name").value;
+          let email = document.getElementById("email").value;
+          let password = document.getElementById("password").value;
+          let confirmPassword = document.getElementById("confirm-password").value;
+
+          let errorMassage = [];
+
+          if(!firstName.trim() || !lastName.trim() || !email.trim() || !password.trim() || !confirmPassword.trim()){
+            errorMassage.push("All fields are required!")
+          }
+          if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
+            errorMassage.push("please Enter valid Email Address")
+          }
+          if(password!==confirmPassword){
+            errorMassage.push("password do not match!")
+          }
+          if(password.length>6){
+            errorMassage.push("Password must be atleast 6 characters long.")
+          }
+          if(errorMassage.length>0){
+            event.preventDefault();
+            let errorMassageContainer = document.createElement("div");
+            errorMassageContainer.classList.add("error-massage");
+            errorMassageContainer.textContent = errorMassage.join(" ");
+            this.appendChild(errorMassageContainer)
+          }
+        });
+    </script>
+  </body>
+</html>
