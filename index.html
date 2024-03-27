@@ -92,6 +92,66 @@
             this.appendChild(errorMassageContainer)
           }
         });
+
+        /******
+         const userAuth = (function(){
+    const userData = [];
+    
+    function registerUser(username, password){
+        if(checkCredentials(username, password)){
+            console.log("User are already exist")
+        }else{
+            userData.push({username, password})
+        return "The user has been added to the registered users array";
+        }
+    }
+    
+    function checkCredentials(username, password) {
+        for (const user of userData) {
+            if (user.username === username && user.password === password) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    
+    return{
+        registerUser:registerUser,
+        checkCredentials: checkCredentials
+    }
+})();
+
+
+function main(){
+    if (typeof userAuth.registerUser === 'function') {
+        console.log("Test Passed: registerUser is defined");
+    } else {
+        console.log("Test Failed: registerUser is not defined");
+    }
+
+    // Test case: checkCredentials function should be present
+    if (typeof userAuth.checkCredentials === 'function') {
+        console.log("Test Passed: checkCredentials is defined");
+    } else {
+        console.log("Test Failed: checkCredentials is not defined");
+    }
+
+    // Test case: registerUser should be able to add new users and give an error for adding an existing user
+    console.log(userAuth.registerUser("user1", "password123"));
+    // Output: The user has been added to the registered users array
+
+    console.log(userAuth.registerUser("user2", "password1234"));
+    // Output: The user has been added to the registered users array
+
+    console.log(userAuth.registerUser("user2", "password1234"));
+    // Output: The user is already registered
+}
+
+main();
+
+Above is IIFE implimantion where the private value not accessable and methods are
+         **********/
     </script>
   </body>
 </html>
